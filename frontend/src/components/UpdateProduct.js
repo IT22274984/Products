@@ -15,43 +15,56 @@ export default function UpdateProduct() {
     const [id, setID] = useState("");
     const [formError, setFormError] = useState("");
 
+    // Load initial product data from localStorage
     useEffect(() => {
-        // Retrieving the product details from localStorage
-        setProductNumber(localStorage.getItem('productnumber'));
-        setProductName(localStorage.getItem('productname'));
-        setProductDealerPrice(localStorage.getItem('productdealerprice'));
-        setProductProfitRate(localStorage.getItem('productprofitrate'));
-        setProductSellingPrice(localStorage.getItem('productsellingprice'));
-        setProductCollectedDate(new Date(localStorage.getItem('productcollecteddate')).toISOString().slice(0, 10));
-        setID(localStorage.getItem('id'));
+        const storedDate = localStorage.getItem('productcollecteddate');
+        setProductNumber(localStorage.getItem('productnumber') || "");
+        setProductName(localStorage.getItem('productname') || "");
+        setProductDealerPrice(localStorage.getItem('productdealerprice') || "");
+        setProductProfitRate(localStorage.getItem('productprofitrate') || "");
+        setProductSellingPrice(localStorage.getItem('productsellingprice') || "");
+        setProductCollectedDate(storedDate ? new Date(storedDate).toISOString().slice(0, 10) : "");
+        setID(localStorage.getItem('id') || "");
     }, []);
 
     // Calculate selling price based on dealer price and profit rate
     const calculateSellingPrice = () => {
         const dealerPrice = parseFloat(productdealerprice) || 0;
         const profitRate = parseFloat(productprofitrate) || 0;
-        const sellingPrice = dealerPrice + (dealerPrice * profitRate / 100);
-        setProductSellingPrice(sellingPrice.toFixed(2)); // Limit to 2 decimal places
+
+        if (dealerPrice >= 0 && profitRate >= 0) {
+            const sellingPrice = dealerPrice + (dealerPrice * profitRate / 100);
+            setProductSellingPrice(sellingPrice.toFixed(2)); // Limit to 2 decimal places
+        } else {
+            setProductSellingPrice(""); // Clear selling price if invalid
+        }
     };
 
+    // Validate the form fields before submission
     const validateForm = () => {
         if (!productnumber || !productname || !productdealerprice || !productprofitrate || !productcollecteddate) {
             setFormError("Please fill in all fields.");
             return false;
         }
+        if (parseFloat(productdealerprice) < 0 || parseFloat(productprofitrate) < 0) {
+            setFormError("Dealer price and profit rate must be non-negative.");
+            return false;
+        }
+        setFormError(""); // Clear error if validation passes
         return true;
     };
 
+    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (validateForm()) {
             const updatedProduct = {
                 productnumber,
                 productname,
-                productdealerprice,
-                productprofitrate,
-                productsellingprice,
-                productcollecteddate
+                dealerprice: parseFloat(productdealerprice) || 0,
+                profitrate: parseFloat(productprofitrate) || 0,
+                sellingprice: parseFloat(productsellingprice) || 0,
+                collecteddate: productcollecteddate
             };
 
             try {
@@ -60,19 +73,19 @@ export default function UpdateProduct() {
                 navigate('/products');
                 localStorage.clear();
             } catch (error) {
-                alert(error.message);
+                alert(error.message || "Error updating product.");
             }
         }
     };
 
     return (
         <div className='container'>
-            <br />
+            <h2>Update Product</h2>
             <form onSubmit={handleSubmit} className="my-form">
                 <div className="mb-3">
                     <label htmlFor="productnumber" className="form-label">Product Number</label>
                     <input
-                        type="number"
+                        type="text"
                         className="form-control"
                         id="productnumber"
                         placeholder="Enter Product Number"
