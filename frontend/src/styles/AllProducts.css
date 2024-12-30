@@ -58,7 +58,7 @@
   position: relative;
   width: 100%;
   max-width: 350px;
-  margin-top: -15px;
+  margin-top: 25px;
 }
 
 .search-container input {
@@ -81,7 +81,7 @@
   background-color: #4caf50;
   max-width: 250px;
   flex: 1;
-  margin-top: -15px;
+  margin-top: 25px;
 }
 
 .btn-report:hover {
