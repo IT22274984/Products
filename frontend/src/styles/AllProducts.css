@@ -1,0 +1,183 @@
+/* Main container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Section for buttons */
+.button-section {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Space between buttons */
+  margin-bottom: 20px; /* Space below the buttons section */
+  flex-wrap: wrap; /* Allow wrapping of buttons on smaller screens */
+  padding: 0 10px;
+}
+
+/* Button Styles */
+.button-add,
+.btn-report,
+.search-container input {
+  padding: 12px 24px;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* "Add Product" Button */
+.button-add {
+  background-color: #0076be;
+  flex: 1;
+  max-width: 250px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.button-add:hover {
+  background-color: #005f8d;
+}
+
+/* "Search Product" Button */
+.search-container {
+  margin-bottom: 30px;
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  margin-top: 20px;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.search-container input:focus {
+  border-color: #0076be;
+  outline: none;
+}
+
+/* "Download Report" Button */
+.btn-report {
+  background-color: #4caf50;
+  max-width: 250px;
+  flex: 1;
+}
+
+.btn-report:hover {
+  background-color: #45a049;
+}
+
+/* Table Container */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Table Headers */
+th {
+  background-color: #0076be;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Table Rows */
+tr:nth-child(even) {
+  background-color: #f4f4f4;
+}
+
+tr:nth-child(odd) {
+  background-color: #e9f3fa;
+}
+
+/* Buttons inside Table */
+.btn-update,
+.btn-delete {
+  padding: 8px 16px;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-update {
+  background-color: #70a34e;
+  color: #fff;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+/* Button Hover Effects */
+.btn-update:hover,
+.btn-delete:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 15px;
+    max-width: 100%;
+  }
+
+  .button-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .button-add,
+  .btn-report {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .search-container {
+    margin: 10px auto;
+    width: 100%;
+    max-width: 90%;
+  }
+
+  table {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,53 @@
+
+
+/* Main container */
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 20px;
+    background-color: #1a1a2e;
+    color: #fff;
+  }
+  
+  /* Footer sections */
+  .footer-section {
+    flex-basis: 25%;
+    padding: 20px;
+  }
+  
+  /* Footer links */
+  .footer-link {
+    color: #fff;
+    text-decoration: none; /* Remove default underline */
+    transition: color 0.3s ease; /* Add transition for color change */
+  }
+  
+  .footer-link:hover {
+    color: #ccc; /* Change color on hover */
+  }
+  
+  /* Bottom footer */
+  .footer-bottom {
+    padding: 20px;
+    text-align: center;
+    background-color: #1a1a2e;
+  }
+  
+  /* Copyright */
+  .footer-copyright {
+    color: #fff;
+    margin-bottom: 10px; /* Add a margin to separate from the social icons */
+  }
+  
+  /* Social icons */
+  .footer-social-icons {
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Social icon style */
+  .footer-icon {
+    color: #fff;
+    margin: 0 10px;
+  }
